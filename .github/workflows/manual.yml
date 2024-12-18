@@ -1,0 +1,19 @@
+# This is a basic workflow that is manually triggered
+
+name: Reload service
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Reload service via API
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://api.render.com/v1/services/srv-cqu9b2ogph6c739trvr0/restart'
+        method: 'POST'
+        bearerToken: 'rnd_ndNrN6TtJL7SEVoGhu5dFHahNvVD'
